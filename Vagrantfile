@@ -83,10 +83,16 @@ Vagrant.configure(2) do |config|
          box.vm.network :private_network, :ip => opts[:data_ip]
       end
 
-      if opts[:name] == 'block1' || opts[:name] == 'object1'
+      if opts[:name] == 'block1' || opts[:name] == 'object1' || opts[:name] == 'object2'
          box.vm.network :private_network, :ip => opts[:mgmt_ip]
          box.vm.network :private_network, :ip => opts[:data_ip]
       end
+
+      if opts[:name] == 'share1' || opts[:name] == 'share2'
+         box.vm.network :private_network, :ip => opts[:mgmt_ip]
+         box.vm.network :private_network, :ip => opts[:data_ip]
+      end
+
 
       box.vm.provider :libvirt do |lv|
         lv.uri = 'qemu+unix:///system'
