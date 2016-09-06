@@ -1,0 +1,8 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.0.0.11  controller.example.com  controller
+10.0.0.21  network.example.com  network
+10.0.0.31  compute1.example.com compute1
+10.0.0.32  compute2.example.com  compute2
+10.0.0.41  block1.example.com  block1
+10.0.0.51  object1.example.com  object1
