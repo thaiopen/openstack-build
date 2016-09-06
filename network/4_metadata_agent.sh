@@ -31,3 +31,19 @@ ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
 
 echo "Populate the database"
 su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
+
+echo "Restart the Compute API service:"
+systemctl restart openstack-nova-api.service
+
+echo "Start the Networking services and configure them to start when the system boots."
+systemctl enable neutron-server.service 
+systemctl enable neutron-linuxbridge-agent.service neutron-dhcp-agent.service 
+systemctl enable neutron-metadata-agent.service
+
+systemctl start neutron-server.service 
+systemctl start neutron-linuxbridge-agent.service neutron-dhcp-agent.service 
+systemctl start neutron-metadata-agent.service
+
+systemctl enable neutron-l3-agent.service
+systemctl start neutron-l3-agent.service
+
