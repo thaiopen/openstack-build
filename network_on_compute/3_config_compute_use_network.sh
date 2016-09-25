@@ -14,7 +14,7 @@ else
     echo "File admin-openrc does not exist"
 fi
 
-cp /etc/neutron/neutron.conf /etc/neutron/neutron.conf.back
+cp /etc/nova/nova.conf /etc/nova/nova.conf.back
 nova="/etc/nova/nova.conf"
 
 openstack-config --set $nova neutron rpc_backend rabbit
@@ -27,3 +27,9 @@ openstack-config --set $nova neutron region_name  RegionOne
 openstack-config --set $nova neutron project_name  service
 openstack-config --set $nova neutron username  neutron
 openstack-config --set $nova neutron password  $NEUTRON_PASS
+
+echo "Finalize installation"
+systemctl restart openstack-nova-compute.service
+systemctl enable neutron-linuxbridge-agent.service
+systemctl start neutron-linuxbridge-agent.service
+
