@@ -39,7 +39,7 @@ if [ -f /etc/chrony.conf ];then
         sudo sed -i '4i server 0.asia.pool.ntp.org iburst' /etc/chrony.conf
         sudo sed -i '5i server 2.asia.pool.ntp.org iburst' /etc/chrony.conf
     else
-        sudo set -i.orig '3,6d' /etc/chrony.conf
+        sudo sed -i.orig '3,6d' /etc/chrony.conf
         sudo sed -i.bak '3i server 10.0.0.11 iburst' /etc/chrony.conf
     fi
 fi
